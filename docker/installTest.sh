@@ -13,7 +13,6 @@ if [ $# -eq 3 ] ; then
     docker run -d --name ydk-miner-chain -v /ydk/minerData:/app/data  -p 8546:8545 yidark/yidark-chain:test "${1}" ${2} ${3}
 fi
 
-# 运行普通节点
 if [ $# -eq 1 ] ; then
     pms="--networkid 668 --http --http.addr 0.0.0.0 --http.api txpool,db,eth,web3,net,personal,admin --port 30303 --http.port 8545 --syncmode=fast  --allow-insecure-unlock  --verbosity 3 --http.vhosts=* "
     pm="${pms} ${1}"
