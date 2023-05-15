@@ -5,23 +5,20 @@ function stop_server() {
 	wait $data
     exit 0
 }
-
 trap 'stop_server' SIGTERM   
 
 if [ ! -d "/app/data/geth" ];then
     cmd='/app/geth --datadir /app/data  init /app/genesis.json'
     $cmd
 fi
-if [ ! -f "/app/.privateKey" ];then
-    if [ $# != 3 ] ; then
-        echo "start Please enter  privateKey "
-        exit 1
+if [ $# -eq 3 ] ; then
+    if [ ! -f "/app/.privateKey" ];then
+        echo $2 > /app/.privateKey 
+        echo $3 > /app/.account
+        echo '123456' > /app/.password
+        cmd='/app/geth --datadir /app/data  account import --password /app/.password  /app/.privateKey'
+        $cmd
     fi
-    echo $2 > /app/.privateKey 
-    echo $3 > /app/.account 
-    echo '123456' > /app/.password
-    cmd='/app/geth --datadir /app/data  account import --password /app/.password  /app/.privateKey'
-    $cmd
 fi
 if [ -f "/app/.account" ];then
     account=$(cat /app/.account)
