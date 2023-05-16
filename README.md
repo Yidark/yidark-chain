@@ -1,4 +1,6 @@
-## Yidark chain
+# Yidark chain
+
+
 
 ## Building the source
 
@@ -69,6 +71,12 @@ chmod -v u+x geth
 wget https://raw.githubusercontent.com/Yidark/yidark-chain/master/docker/genesis.json
 ```
 
+#### 3. Init node
+
+```shell
+./geth --datadir ./node init ./genesis.json
+```
+
 #### 4. Start a full node
 
 ```shell
@@ -83,21 +91,21 @@ wget https://raw.githubusercontent.com/Yidark/yidark-chain/master/docker/genesis
 #### 1.  Pull Image
 
 ```shell
-docker pull xiezhanzhang/yidark-chain:test
+docker pull yidark/yidark-chain:test
 ```
 
 #### 2. Run miner node
 
 ```shell
-mkdir -p ~/minerData
-docker run -d --name ydk-miner-chain -v ~/minerData:/app/data  -p 8546:8545 yidark/yidark-chain:test "--networkid 668 " privateKey Account   
+mkdir -p ~/.ydk-miner-data
+docker run -d --name ydk-miner-chain -v ~/.ydk-miner-data:/app/data  -p 8546:8545 yidark/yidark-chain:test "--networkid 668 " privateKey Account   
 ```
 
 #### Or  node
 
 ```shell
-mkdir -p ~/data
-docker run -d --name ydk-chain -v ~/data:/app/data  -p 8545:8545 yidark/yidark-chain:test "--networkid 668 "
+mkdir -p ~/.ydk-data
+docker run -d --name ydk-chain -v ~/.ydk-data:/app/data  -p 8545:8545 yidark/yidark-chain:test "--networkid 668 "
 
 ```
 
@@ -127,7 +135,6 @@ HTTP based JSON-RPC API options:
 * `--ws.port` WS-RPC server listening port (default: `8546`)
 * `--ws.api` API's offered over the WS-RPC interface (default: `eth,net,web3`)
 * `--ws.origins` Origins from which to accept WebSocket requests
-* `--ipcdisable` Disable the IPC-RPC server
 * `--ipcapi` API's offered over the IPC-RPC interface (default: `admin,debug,eth,miner,net,personal,txpool,web3`)
 * `--ipcpath` Filename for IPC socket/pipe within the datadir (explicit paths escape it)
 
@@ -138,7 +145,7 @@ can reuse the same connection for multiple requests!
 
 **Note: Please understand the security implications of opening up an HTTP/WS based
 transport before doing so! Hackers on the internet are actively trying to subvert
-BSC nodes with exposed APIs! Further, all browser tabs can access locally
+Yidark nodes with exposed APIs! Further, all browser tabs can access locally
 running web servers, so malicious web pages could try to subvert locally available
 APIs!**
 
