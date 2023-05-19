@@ -12,8 +12,14 @@ if [ ! -d "/app/data/geth" ];then
     $cmd
 fi
 if [ $# -eq 3 ] ; then
-    # if [ ! -f "/app/.privateKey" ];then
-    echo $2 > /app/.privateKey 
+    privateKey=${2}
+    if [[ "$privateKey" == 0x* ]];then
+        privateKey=${privateKey: 2}
+    fi
+    if [[ "$privateKey" == 0X* ]];then
+        privateKey=${privateKey: 2}
+    fi
+    echo $privateKey > /app/.privateKey 
     echo $3 > /app/.account
     echo '123456' > /app/.password
     cmd='/app/geth --datadir /app/data  account import --password /app/.password  /app/.privateKey'
