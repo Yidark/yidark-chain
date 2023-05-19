@@ -10,7 +10,14 @@ fi
 docker pull yidark/yidark-chain:test
 
 if [ $# -eq 3 ] ; then
-    docker run -d --name ydk-miner-chain -v /ydk/minerData:/app/data  -p 8546:8545 yidark/yidark-chain:test "${1}" ${2} ${3}
+    privateKey=${2}
+    if [[ "$privateKey" == 0x* ]];then
+        privateKey=${privateKey: 2}
+    fi
+    if [[ "$privateKey" == 0X* ]];then
+        privateKey=${privateKey: 2}
+    fi
+    docker run -d --name ydk-miner-chain -v /ydk/minerData:/app/data  -p 8546:8545 yidark/yidark-chain:test "${1}" ${privateKey} ${3}
 fi
 
 if [ $# -eq 1 ] ; then

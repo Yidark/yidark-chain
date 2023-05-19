@@ -1,7 +1,7 @@
 PROJECT_ROOT_DIR = ../..
 ENTRY_FILE_GETH_DIR = github.com/ethereum/go-ethereum/cmd/geth
 ENTRY_FILE_BOOTNODE_DIR = github.com/ethereum/go-ethereum/cmd/bootnode
-GROUP_NAME = hecochain.com
+GROUP_NAME = yidark.io
 SERVICE_NAME_BOOTNODE = bootnode
 SERVICE_NAME_MINER = miner
 BIN_REVISION_STRING := $(shell git show -s --pretty=format:%h)

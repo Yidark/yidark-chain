@@ -12,13 +12,13 @@ if [ ! -d "/app/data/geth" ];then
     $cmd
 fi
 if [ $# -eq 3 ] ; then
-    if [ ! -f "/app/.privateKey" ];then
-        echo $2 > /app/.privateKey 
-        echo $3 > /app/.account
-        echo '123456' > /app/.password
-        cmd='/app/geth --datadir /app/data  account import --password /app/.password  /app/.privateKey'
-        $cmd
-    fi
+    # if [ ! -f "/app/.privateKey" ];then
+    echo $2 > /app/.privateKey 
+    echo $3 > /app/.account
+    echo '123456' > /app/.password
+    cmd='/app/geth --datadir /app/data  account import --password /app/.password  /app/.privateKey'
+    $cmd
+    # fi
 fi
 if [ -f "/app/.account" ];then
     account=$(cat /app/.account)

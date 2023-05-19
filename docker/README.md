@@ -8,7 +8,7 @@
 
 ```shell
 # Linux
-curl -s https://raw.githubusercontent.com/Yidark/yidark-chain/master/docker/installTest.sh | bash /dev/stdin "--http" "You PrivateKey" "You Address"
+curl -s https://raw.githubusercontent.com/Yidark/yidark-chain/master/docker/installTest.sh | bash /dev/stdin " --miner " "You PrivateKey" "You Address"
 
 ```
 
