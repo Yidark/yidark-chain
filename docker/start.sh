@@ -29,10 +29,10 @@ fi
 if [ -f "/app/data/.account" ];then
     account=$(cat /app/data/.account)
     password=$(cat /app/data/.password)
-    minerCmd="/app/geth --datadir /app/data --bootnodes enode://688ff529dea9f4dc8524a24c688cf9bb9dd9ac13f23c2a1eabc71d67b66f5444d646ebf4ae1d5a5857483b861d6e9a0768279cac7664de3bc456fa94bcb6a838@47.242.248.60:0?discport=30301 --miner.gasprice 1000000000 --miner.gaslimit 80000000  --miner.etherbase ${account} --unlock ${account} --password /app/data/.password --networkid 927 --allow-insecure-unlock ${1} "
+    minerCmd="/app/geth --datadir /app/data --bootnodes enode://19ab4f21d9b825bb16657f93f999ac2ae67d31d3492bfa0750fa04b6d5953440488026cbafdda2738145bc224c095d03a8cf6818ccd3d487798709afcf7fa951@8.217.206.244:0?discport=30301 --miner.gasprice 1000000000 --miner.gaslimit 900000000  --miner.etherbase ${account} --unlock ${account} --password /app/data/.password --networkid 927 --allow-insecure-unlock ${1} "
     $minerCmd > /app/data/geth.log 2>&1 &
 else
-    nodeCmd="/app/geth --datadir /app/data --bootnodes enode://688ff529dea9f4dc8524a24c688cf9bb9dd9ac13f23c2a1eabc71d67b66f5444d646ebf4ae1d5a5857483b861d6e9a0768279cac7664de3bc456fa94bcb6a838@47.242.248.60:0?discport=30301 --miner.gasprice 1000000000 --networkid 927 --syncmode=full ${1} "
+    nodeCmd="/app/geth --datadir /app/data --bootnodes enode://19ab4f21d9b825bb16657f93f999ac2ae67d31d3492bfa0750fa04b6d5953440488026cbafdda2738145bc224c095d03a8cf6818ccd3d487798709afcf7fa951@8.217.206.244:0?discport=30301 --miner.gasprice 1000000000 --networkid 927 --syncmode=full --allow-insecure-unlock ${1} "
     $nodeCmd > /app/data/geth.log 2>&1 &
 fi
 while true; do :; done
