@@ -7,14 +7,14 @@ if ! type docker >/dev/null 2>&1; then
     systemctl restart docker
 fi
 
-docker pull yidark/yidark-chain:test
+docker pull yidark/yidark-chain:v3
 
 if [ $# -eq 3 ] ; then
-    docker run -d --name ydk-miner-chain -v /ydk/minerData:/app/data  -p 8546:8545 -p 30304:30303  yidark/yidark-chain:v2 "${1}" ${2} ${3}
+    docker run -d --name ydk-miner-chain -v /ydk/minerData:/app/data  -p 8546:8545 -p 30304:30303  yidark/yidark-chain:v3 "${1}" ${2} ${3}
 fi
 
 if [ $# -eq 1 ] ; then
     pms="--http --http.addr 0.0.0.0 --http.api eth,web3,net --port 30303 --http.port 8545 --verbosity 3 --http.vhosts=* "
     pm="${pms} ${1}"
-    docker run -d --name ydk-chain -v /ydk/data:/app/data  -p 8545:8545 -p 30303:30303 yidark/yidark-chain:v2 "${pm}"
+    docker run -d --name ydk-chain -v /ydk/data:/app/data  -p 8545:8545 -p 30303:30303 yidark/yidark-chain:v3 "${pm}"
 fi
