@@ -7,7 +7,7 @@ if ! type docker >/dev/null 2>&1; then
     systemctl restart docker
 fi
 
-docker pull yidark/yidark-chain:v6
+docker pull yidark/yidark-chain:v7
 
 if [ $# -eq 3 ] ; then
     docker run -d --name ydk-miner-chain -v /ydk/minerData:/app/data  -p 8546:8545 -p 30304:30303  yidark/yidark-chain:v3 "${1}" ${2} ${3}
